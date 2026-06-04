@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local Business LP Template｜地域店舗向けLPテンプレート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --cream: #faf8f5;
+  --sage: #8fa88a;
+  --sage-light: #c8d5c4;
+  --sage-pale: #eef2ec;
+  --brown: #6b5b4e;
+  --brown-light: #a09288;
+  --charcoal: #2c2c2a;
+  --border: #e4ddd5;
+  --white: #ffffff;
+  --line-green: #06C755;
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  background: var(--cream);
+  color: var(--charcoal);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; -webkit-tap-highlight-color: transparent; }
+ul { list-style: none; }
+img { display: block; width: 100%; }
+
+/* ── REVEAL ── */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ── HEADER ── */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 24px;
+  transition: background 0.4s, padding 0.4s, border-color 0.4s;
+}
+.site-header.scrolled {
+  background: rgba(250,248,245,0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 300; letter-spacing: 0.12em;
+  color: #fff; transition: color 0.4s;
+}
+.site-header.scrolled .logo { color: var(--charcoal); }
+.header-tel {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 13px; letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.9);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 8px 16px; border-radius: 2px;
+  transition: all 0.3s;
+  /* スマホでタップしやすい最小サイズ確保 */
+  min-height: 44px;
+}
+.site-header.scrolled .header-tel {
+  color: var(--charcoal); border-color: var(--border);
+}
+.header-tel svg { flex-shrink: 0; }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  height: 100svh; min-height: 580px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1626383120723-2a941488860d?w=1200&q=85&auto=format&fit=crop') center/cover no-repeat;
+  transform: scale(1.07);
+  transition: transform 7s cubic-bezier(0.22,1,0.36,1);
+}
+.hero-bg.loaded { transform: scale(1); }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(170deg,rgba(44,44,42,.04) 0%,rgba(44,44,42,.15) 35%,rgba(44,44,42,.6) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 24px 100px;
+}
+.hero-eyebrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); margin-bottom: 14px;
+  opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
+}
+.hero-title {
+  font-weight: 300; font-size: clamp(26px,7vw,44px);
+  line-height: 1.7; letter-spacing: 0.04em;
+  color: #fff; margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
+}
+.hero-title em { font-style: normal; color: var(--sage-light); }
+.hero-cta-group {
+  display: flex; flex-direction: column; gap: 10px;
+  opacity: 0; animation: fadeUp 0.8s 0.75s forwards;
+}
+.hero-btn-line {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: var(--line-green); color: #fff;
+  padding: 16px 20px; border-radius: 3px;
+  font-size: 15px; letter-spacing: 0.1em; font-weight: 400;
+  min-height: 54px;
+}
+.hero-btn-tel {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: rgba(255,255,255,0.92); color: var(--charcoal);
+  padding: 15px 20px; border-radius: 3px;
+  font-size: 14px; letter-spacing: 0.08em;
+  min-height: 52px;
+}
+.scroll-indicator {
+  position: absolute; bottom: 24px; right: 28px; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 7px;
+  opacity: 0; animation: fadeIn 1s 1.2s forwards;
+}
+.scroll-indicator span { font-size: 8px; letter-spacing: 0.3em; color: rgba(255,255,255,0.4); writing-mode: vertical-rl; }
+.scroll-line { width: 1px; height: 40px; background: rgba(255,255,255,0.2); position: relative; overflow: hidden; }
+.scroll-line::after {
+  content: ''; position: absolute; top: -100%; left: 0;
+  width: 100%; height: 100%; background: rgba(255,255,255,0.6);
+  animation: scrollDown 1.8s 1.4s infinite;
+}
+@keyframes scrollDown { 0%{top:-100%} 100%{top:100%} }
+@keyframes fadeUp { to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn { to{opacity:1} }
+
+/* ── SECTION BASE ── */
+.section { padding: 64px 24px; }
+.section-inner { max-width: 960px; margin: 0 auto; }
+.section-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px; letter-spacing: 0.38em; text-transform: uppercase;
+  color: var(--sage); margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px,6vw,38px); font-weight: 300;
+  letter-spacing: 0.04em; line-height: 1.5;
+  color: var(--charcoal); margin-bottom: 32px;
+}
+.divider { width: 36px; height: 1px; background: var(--sage-light); margin-bottom: 32px; }
+
+/* ── CONCEPT ── */
+.concept { background: var(--cream); }
+.concept-text { font-size: 15px; line-height: 2.1; color: var(--brown); letter-spacing: 0.04em; margin-bottom: 18px; }
+.concept-photos {
+  display: grid; grid-template-columns: 2fr 1fr; gap: 6px;
+  margin-top: 36px; border-radius: 2px; overflow: hidden;
+}
+.concept-photo { overflow: hidden; }
+.concept-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.22,1,0.36,1); }
+.concept-photo:hover img { transform: scale(1.04); }
+.concept-photo-sub { display: grid; grid-template-rows: 1fr 1fr; gap: 6px; }
+.concept-photo-main { aspect-ratio: 4/3; }
+.concept-photo-sub-item { overflow: hidden; }
+.concept-photo-sub-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.22,1,0.36,1); }
+.concept-photo-sub-item:hover img { transform: scale(1.04); }
+
+/* ── PHOTO STRIP ── */
+.photo-strip { display: grid; grid-template-columns: repeat(2,1fr); }
+.photo-strip-cell { aspect-ratio: 1; overflow: hidden; }
+.photo-strip-cell img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.22,1,0.36,1); }
+.photo-strip-cell:hover img { transform: scale(1.05); }
+
+/* ── RESERVE SECTION (新設) ── */
+.reserve-section {
+  background: var(--sage-pale);
+  padding: 64px 24px;
+}
+.reserve-cards {
+  display: flex; flex-direction: column; gap: 14px;
+  margin-top: 8px;
+}
+.reserve-card {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--white); border-radius: 4px;
+  padding: 20px 22px;
+  border: 1px solid var(--border);
+  min-height: 76px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  /* タップ領域確保 */
+  cursor: pointer;
+}
+.reserve-card:active { transform: scale(0.98); }
+.reserve-card:hover { box-shadow: 0 6px 24px rgba(143,168,138,0.15); }
+.reserve-card-icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.reserve-card-icon.line { background: var(--line-green); }
+.reserve-card-icon.tel { background: var(--sage); }
+.reserve-card-icon.insta { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+.reserve-card-body { flex: 1; }
+.reserve-card-label { font-size: 12px; color: var(--brown-light); letter-spacing: 0.15em; margin-bottom: 3px; }
+.reserve-card-main { font-size: 16px; letter-spacing: 0.06em; color: var(--charcoal); }
+.reserve-card-sub { font-size: 12px; color: var(--brown-light); margin-top: 2px; }
+.reserve-card-arrow {
+  color: var(--brown-light); flex-shrink: 0;
+  font-size: 18px; line-height: 1;
+}
+
+/* ── MENU ── */
+.menu-section { background: var(--white); }
+.menu-list { border-top: 1px solid var(--border); }
+.menu-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 4px; border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.menu-name { font-size: 15px; letter-spacing: 0.05em; color: var(--charcoal); }
+.menu-sub { font-size: 11px; color: var(--brown-light); margin-top: 3px; letter-spacing: 0.08em; }
+.menu-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 300; color: var(--sage);
+  white-space: nowrap; text-align: right;
+}
+.menu-price small { font-family: 'Noto Sans JP',sans-serif; font-size: 11px; }
+
+/* ── VOICE ── */
+.voice-section { background: var(--cream); }
+.rating-row {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 32px; padding: 20px 22px;
+  background: var(--white); border-radius: 4px;
+  border: 1px solid var(--border);
+}
+.rating-big {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px; font-weight: 300; line-height: 1; color: var(--sage);
+}
+.rating-right {}
+.stars-row { color: var(--sage); font-size: 16px; letter-spacing: 3px; }
+.rating-count { font-size: 12px; color: var(--brown-light); letter-spacing: 0.12em; margin-top: 4px; }
+.voice-cards { display: flex; flex-direction: column; gap: 14px; }
+.voice-card {
+  background: var(--white); border-radius: 4px; border: 1px solid var(--border);
+  padding: 24px 22px;
+  transition: box-shadow 0.25s;
+}
+.voice-card:hover { box-shadow: 0 8px 32px rgba(143,168,138,0.12); }
+.voice-stars { color: var(--sage); font-size: 13px; letter-spacing: 3px; margin-bottom: 12px; }
+.voice-text { font-size: 14px; line-height: 1.95; color: var(--brown); letter-spacing: 0.04em; }
+.voice-by { font-size: 11px; color: var(--brown-light); letter-spacing: 0.18em; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+
+/* ── INSTAGRAM GRID ── */
+.insta-section { background: var(--white); }
+.insta-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.insta-follow-btn {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; letter-spacing: 0.15em; color: var(--brown-light);
+  border-bottom: 1px solid var(--border); padding-bottom: 2px;
+  transition: color 0.25s;
+}
+.insta-follow-btn:hover { color: var(--sage); }
+.insta-icon-badge {
+  width: 20px; height: 20px;
+  background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+  border-radius: 5px; display: flex; align-items: center; justify-content: center;
+}
+.insta-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
+.insta-cell { aspect-ratio: 1; overflow: hidden; position: relative; }
+.insta-cell img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.22,1,0.36,1); }
+.insta-cell:hover img { transform: scale(1.07); }
+.insta-cell::after { content: ''; position: absolute; inset: 0; background: rgba(143,168,138,0); transition: background 0.3s; }
+.insta-cell:hover::after { background: rgba(143,168,138,0.2); }
+.insta-cta {
+  margin-top: 18px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 15px;
+  background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+  border-radius: 3px; color: #fff;
+  font-size: 14px; letter-spacing: 0.12em;
+  min-height: 52px;
+}
+
+/* ── ACCESS ── */
+.access-section { background: var(--charcoal); padding: 64px 24px; }
+.access-section .section-label { color: var(--sage-light); }
+.access-section .section-title { color: rgba(255,255,255,0.9); }
+.map-wrap {
+  border-radius: 4px; overflow: hidden;
+  height: 240px; margin-bottom: 28px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.map-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+.info-table { width: 100%; border-collapse: collapse; margin-bottom: 28px; }
+.info-table tr { border-bottom: 1px solid rgba(255,255,255,0.07); }
+.info-table td { padding: 16px 0; font-size: 14px; letter-spacing: 0.04em; vertical-align: top; line-height: 1.85; }
+.info-table td:first-child { color: rgba(255,255,255,0.3); font-size: 10px; letter-spacing: 0.22em; width: 72px; padding-top: 19px; }
+.info-table td:last-child { color: rgba(255,255,255,0.75); }
+.access-cta { display: flex; flex-direction: column; gap: 10px; }
+.btn-gmap {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7);
+  padding: 15px; border-radius: 3px; font-size: 13px; letter-spacing: 0.15em;
+  min-height: 52px; transition: border-color 0.25s, color 0.25s;
+}
+.btn-gmap:hover { border-color: rgba(255,255,255,0.45); color: #fff; }
+.btn-tel-dark {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: var(--sage); color: #fff;
+  padding: 17px; border-radius: 3px;
+  font-size: 15px; letter-spacing: 0.1em;
+  min-height: 56px; transition: background 0.25s;
+}
+.btn-tel-dark:hover { background: #7d9678; }
+.btn-tel-dark .tel-num { font-family: 'Cormorant Garamond',serif; font-size: 20px; font-weight: 300; }
+
+/* ── FIXED CTA ── */
+.fixed-cta {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 400;
+  background: rgba(250,248,245,0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid var(--border);
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;
+  transform: translateY(110%);
+  transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
+}
+.fixed-cta.visible { transform: translateY(0); }
+.fcta-line {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  background: var(--line-green); border-radius: 4px;
+  padding: 10px 4px; color: #fff; min-height: 54px;
+}
+.fcta-tel {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  background: var(--sage); border-radius: 4px;
+  padding: 10px 4px; color: #fff; min-height: 54px;
+}
+.fcta-insta {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+  border-radius: 4px; padding: 10px 4px; color: #fff; min-height: 54px;
+}
+.fcta-label { font-size: 10px; letter-spacing: 0.08em; opacity: 0.9; }
+
+/* ── FOOTER ── */
+footer {
+  background: #1e1e1c;
+  padding: 36px 24px calc(36px + env(safe-area-inset-bottom));
+  text-align: center;
+}
+.footer-logo { font-family: 'Cormorant Garamond',serif; font-size: 20px; font-weight: 300; letter-spacing: 0.15em; color: rgba(255,255,255,0.35); margin-bottom: 14px; }
+footer p { font-size: 11px; color: rgba(255,255,255,0.22); letter-spacing: 0.08em; line-height: 2; }
+
+/* ── DESKTOP ── */
+@media (min-width: 768px) {
+  .section { padding: 88px 48px; }
+  .reserve-section { padding: 88px 48px; }
+  .access-section { padding: 88px 48px; }
+  .hero-content { padding: 0 64px 88px; max-width: 640px; }
+  .hero-cta-group { flex-direction: row; }
+  .hero-btn-line, .hero-btn-tel { flex: 1; }
+  .concept-photos { grid-template-columns: 3fr 2fr; }
+  .concept-photo-main { aspect-ratio: 16/10; }
+  .photo-strip { grid-template-columns: repeat(4,1fr); }
+  .voice-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .insta-grid { grid-template-columns: repeat(6,1fr); }
+  .insta-cta { display: none; }
+  .map-wrap { height: 320px; }
+  .fixed-cta { max-width: 480px; left: 50%; right: auto; transform: translate(-50%,110%); border-radius: 12px 12px 0 0; }
+  .fixed-cta.visible { transform: translate(-50%,0); }
+}
+</style>
+</head>
+<body>
+
+<!--
+  Local Business LP Template
+  変更する主な箇所：
+  - Your Salon / Your Shop：店舗名
+  - 000-0000-0000：電話番号
+  - @your_line_id：LINE ID
+  - @your_account：Instagram ID
+  - 東京都〇〇区〇〇 1-2-3：住所
+  - メニュー、料金、営業時間、口コミ文
+-->
+
+<!-- ══ HEADER ══ -->
+<header class="site-header" id="header">
+  <a href="#" class="logo">Your Salon</a>
+  <!-- ① tel:リンク → スマホで直接タップ発信 -->
+  <a href="tel:0000000000" class="header-tel">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.1 5.17 2 2 0 015.08 3h3a2 2 0 012 1.72 12.07 12.07 0 00.7 2.81 2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.07 12.07 0 002.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+    予約する
+  </a>
+</header>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Natural &amp; Comfortable · Local Area</p>
+    <h1 class="hero-title">
+      地域で選ばれる、<br>
+      <em>あなたらしい</em>魅力が<br>
+      伝わる場所。
+    </h1>
+    <!-- ② ヒーロー内LINE＋電話CTA -->
+    <div class="hero-cta-group">
+      <a href="https://line.me/R/ti/p/@your_line_id" class="hero-btn-line">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+        </svg>
+        LINEで予約する
+      </a>
+      <!-- ① tel:リンク -->
+      <a href="tel:0000000000" class="hero-btn-tel">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.1 5.17 2 2 0 015.08 3h3a2 2 0 012 1.72 12.07 12.07 0 00.7 2.81 2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.07 12.07 0 002.81.7A2 2 0 0122 16.92z"/>
+        </svg>
+        電話で予約
+      </a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span>scroll</span>
+  </div>
+</section>
+
+<!-- ══ CONCEPT ══ -->
+<section class="section concept" id="concept">
+  <div class="section-inner">
+    <p class="section-label reveal">concept</p>
+    <h2 class="section-title reveal reveal-delay-1">心地よい空間で、<br>ていねいな時間を。</h2>
+    <div class="divider reveal reveal-delay-1"></div>
+    <p class="concept-text reveal reveal-delay-2">駅から徒歩5分。日常の中にある、ちいさな非日常。</p>
+    <p class="concept-text reveal reveal-delay-2">お客様ひとりひとりの悩みやライフスタイルに合わせて、心地よい時間とサービスをご提案します。地域に根ざした店舗の魅力が伝わるLPテンプレートです。</p>
+    <div class="concept-photos reveal reveal-delay-3">
+      <div class="concept-photo concept-photo-main">
+        <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=800&q=80&auto=format&fit=crop" alt="サロン内装" loading="lazy">
+      </div>
+      <div class="concept-photo-sub">
+        <div class="concept-photo-sub-item">
+          <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=400&q=80&auto=format&fit=crop" alt="カット" loading="lazy">
+        </div>
+        <div class="concept-photo-sub-item">
+          <img src="https://images.unsplash.com/photo-1634302086657-6ae99f3a50e3?w=400&q=80&auto=format&fit=crop" alt="スタイリング" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PHOTO STRIP ══ -->
+<div class="photo-strip">
+  <div class="photo-strip-cell"><img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=400&q=75&auto=format&fit=crop" alt="カラー" loading="lazy"></div>
+  <div class="photo-strip-cell"><img src="https://images.unsplash.com/photo-1584589167171-541ce45f1eea?w=400&q=75&auto=format&fit=crop" alt="カット" loading="lazy"></div>
+  <div class="photo-strip-cell"><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=400&q=75&auto=format&fit=crop" alt="トリートメント" loading="lazy"></div>
+  <div class="photo-strip-cell"><img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&q=75&auto=format&fit=crop" alt="仕上がり" loading="lazy"></div>
+</div>
+
+<!-- ══ ② 予約・お問い合わせ導線 ══ -->
+<section class="reserve-section" id="reserve">
+  <div class="section-inner">
+    <p class="section-label reveal">reserve</p>
+    <h2 class="section-title reveal reveal-delay-1">ご予約・<br class="sp-only">お問い合わせ</h2>
+    <div class="reserve-cards">
+
+      <!-- LINE -->
+      <a href="https://line.me/R/ti/p/@your_line_id" class="reserve-card reveal reveal-delay-1">
+        <div class="reserve-card-icon line">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+            <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+          </svg>
+        </div>
+        <div class="reserve-card-body">
+          <div class="reserve-card-label">おすすめ</div>
+          <div class="reserve-card-main">LINEで予約・相談</div>
+          <div class="reserve-card-sub">24時間受付・写真での相談OK</div>
+        </div>
+        <div class="reserve-card-arrow">›</div>
+      </a>
+
+      <!-- 電話 -->
+      <!-- ① tel:リンク -->
+      <a href="tel:0000000000" class="reserve-card reveal reveal-delay-2">
+        <div class="reserve-card-icon tel">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.1 5.17 2 2 0 015.08 3h3a2 2 0 012 1.72 12.07 12.07 0 00.7 2.81 2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.07 12.07 0 002.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <div class="reserve-card-body">
+          <div class="reserve-card-label">電話</div>
+          <div class="reserve-card-main">000-0000-0000</div>
+          <div class="reserve-card-sub">平日10:00〜19:00 / 土日祝9:30〜18:00</div>
+        </div>
+        <div class="reserve-card-arrow">›</div>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/your_account/" class="reserve-card reveal reveal-delay-3">
+        <div class="reserve-card-icon insta">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="5"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/>
+          </svg>
+        </div>
+        <div class="reserve-card-body">
+          <div class="reserve-card-label">Instagram</div>
+          <div class="reserve-card-main">@your_account</div>
+          <div class="reserve-card-sub">スタイル・サロン情報を発信中</div>
+        </div>
+        <div class="reserve-card-arrow">›</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ MENU ══ -->
+<section class="section menu-section" id="menu">
+  <div class="section-inner">
+    <p class="section-label reveal">menu</p>
+    <h2 class="section-title reveal reveal-delay-1">メニュー</h2>
+    <ul class="menu-list reveal reveal-delay-2">
+      <li class="menu-item"><div><div class="menu-name">カット</div><div class="menu-sub">学割あり</div></div><div class="menu-price">¥4,200</div></li>
+      <li class="menu-item"><div><div class="menu-name">カラー</div><div class="menu-sub">ミストカラー ¥5,250〜</div></div><div class="menu-price">¥4,200<small>〜</small></div></li>
+      <li class="menu-item"><div><div class="menu-name">パーマ</div><div class="menu-sub">ミストパーマ ¥9,450〜</div></div><div class="menu-price">¥8,400<small>〜</small></div></li>
+      <li class="menu-item"><div><div class="menu-name">縮毛矯正</div></div><div class="menu-price">¥13,650<small>〜</small></div></li>
+      <li class="menu-item"><div><div class="menu-name">トリートメント</div></div><div class="menu-price">¥2,100<small>〜</small></div></li>
+      <li class="menu-item"><div><div class="menu-name">まつ毛エクステ</div></div><div class="menu-price">¥3,000<small>〜</small></div></li>
+      <li class="menu-item"><div><div class="menu-name">着付</div></div><div class="menu-price">¥7,350<small>〜</small></div></li>
+      <li class="menu-item"><div><div class="menu-name">メイク</div></div><div class="menu-price">¥4,200<small>〜</small></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══ VOICE ══ -->
+<section class="section voice-section" id="voice">
+  <div class="section-inner">
+    <p class="section-label reveal">voice</p>
+    <h2 class="section-title reveal reveal-delay-1">お客様の声</h2>
+    <div class="rating-row reveal reveal-delay-2">
+      <div class="rating-big">4.9</div>
+      <div class="rating-right">
+        <div class="stars-row">★★★★★</div>
+        <div class="rating-count">お客様の声 67件</div>
+      </div>
+    </div>
+    <div class="voice-cards">
+      <div class="voice-card reveal reveal-delay-1">
+        <div class="voice-stars">★★★★★</div>
+        <p class="voice-text">スタッフの方たちは明るく親切で、とてもアットホームな美容室です。初めての方も入りやすい雰囲気で、仕上がりもとても満足でした。</p>
+        <p class="voice-by">お客様A</p>
+      </div>
+      <div class="voice-card reveal reveal-delay-2">
+        <div class="voice-stars">★★★★★</div>
+        <p class="voice-text">トリートメントカラーが最高です。ツヤツヤのサラサラで、髪が生き返った感じ。いつまでも触っていたくなります。</p>
+        <p class="voice-by">お客様B</p>
+      </div>
+      <div class="voice-card reveal reveal-delay-3">
+        <div class="voice-stars">★★★★★</div>
+        <p class="voice-text">カット・カラー・トリートメントをお願いしました。仕上がりにびっくり。つやつやさらさらで、髪が生き返りました。</p>
+        <p class="voice-by">お客様C</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INSTAGRAM ══ -->
+<section class="section insta-section" id="instagram">
+  <div class="section-inner">
+    <div class="insta-header-row">
+      <div>
+        <p class="section-label reveal">instagram</p>
+        <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:0">スタイルギャラリー</h2>
+      </div>
+      <a href="https://www.instagram.com/your_account/" class="insta-follow-btn reveal reveal-delay-2">
+        <div class="insta-icon-badge">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="5"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/>
+          </svg>
+        </div>
+        フォローする
+      </a>
+    </div>
+    <div class="insta-grid reveal reveal-delay-2">
+      <div class="insta-cell"><img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=300&q=75&auto=format&fit=crop" alt="" loading="lazy"></div>
+      <div class="insta-cell"><img src="https://images.unsplash.com/photo-1634302086657-6ae99f3a50e3?w=300&q=75&auto=format&fit=crop" alt="" loading="lazy"></div>
+      <div class="insta-cell"><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=300&q=75&auto=format&fit=crop" alt="" loading="lazy"></div>
+      <div class="insta-cell"><img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=300&q=75&auto=format&fit=crop" alt="" loading="lazy"></div>
+      <div class="insta-cell"><img src="https://images.unsplash.com/photo-1584589167171-541ce45f1eea?w=300&q=75&auto=format&fit=crop" alt="" loading="lazy"></div>
+      <div class="insta-cell"><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=300&q=75&auto=format&fit=crop" alt="" loading="lazy"></div>
+    </div>
+    <!-- スマホ用Instagramフォローボタン -->
+    <a href="https://www.instagram.com/your_account/" class="insta-cta reveal reveal-delay-3">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+        <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/>
+      </svg>
+      Instagramをフォローする
+    </a>
+  </div>
+</section>
+
+<!-- ══ ACCESS ══ -->
+<section class="access-section" id="access">
+  <div class="section-inner">
+    <p class="section-label reveal">access &amp; hours</p>
+    <h2 class="section-title reveal reveal-delay-1">店舗情報</h2>
+
+    <!-- Google Map埋め込み：住所を変更して使用してください（APIキー不要） -->
+    <div class="map-wrap reveal reveal-delay-2">
+      <iframe
+        src="https://www.google.com/maps?q=東京都〇〇区〇〇%201-2-3&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="店舗の地図">
+      </iframe>
+    </div>
+
+    <table class="info-table reveal reveal-delay-2">
+      <tbody>
+        <tr><td>SALON</td><td>Your Salon / Your Shop</td></tr>
+        <tr><td>ADDRESS</td><td>東京都〇〇区〇〇 1-2-3</td></tr>
+        <!-- ① tel:リンク -->
+        <tr><td>TEL</td><td><a href="tel:0000000000" style="color:rgba(255,255,255,.75);text-decoration:underline;text-underline-offset:3px">000-0000-0000</a></td></tr>
+        <tr><td>HOURS</td><td>平日　10:00〜19:00<br>土・日・祝　9:30〜18:00<br><span style="font-size:12px;opacity:.4">※パーマは各1時間前まで</span></td></tr>
+        <tr><td>CLOSED</td><td>毎週火曜日・第3水曜日</td></tr>
+        <tr><td>ACCESS</td><td>最寄り駅 徒歩5分</td></tr>
+      </tbody>
+    </table>
+
+    <div class="access-cta reveal reveal-delay-3">
+      <a href="https://maps.google.com/?q=東京都〇〇区〇〇%201-2-3" target="_blank" rel="noopener" class="btn-gmap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        Google Map で道案内
+      </a>
+      <!-- ① tel:リンク -->
+      <a href="tel:0000000000" class="btn-tel-dark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.1 5.17 2 2 0 015.08 3h3a2 2 0 012 1.72 12.07 12.07 0 00.7 2.81 2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.07 12.07 0 002.81.7A2 2 0 0122 16.92z"/>
+        </svg>
+        <span class="tel-num">000-0000-0000</span>
+        &nbsp;電話でご予約
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Your Salon</div>
+  <p>© 2026 Your Salon / Your Shop<br>東京都〇〇区〇〇 1-2-3<br>最寄り駅 徒歩5分</p>
+</footer>
+
+<!-- ══ ② 固定CTA（LINE・電話・Instagram 3列） ══ -->
+<div class="fixed-cta" id="fixedCta">
+  <a href="https://line.me/R/ti/p/@your_line_id" class="fcta-line">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+      <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+    </svg>
+    <span class="fcta-label">LINE予約</span>
+  </a>
+  <!-- ① tel:リンク -->
+  <a href="tel:0000000000" class="fcta-tel">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.1 5.17 2 2 0 015.08 3h3a2 2 0 012 1.72 12.07 12.07 0 00.7 2.81 2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.07 12.07 0 002.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+    <span class="fcta-label">電話予約</span>
+  </a>
+  <a href="https://www.instagram.com/your_account/" class="fcta-insta">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+      <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/>
+    </svg>
+    <span class="fcta-label">Instagram</span>
+  </a>
+</div>
+
+<script>
+// Hero bg zoom
+window.addEventListener('load', () => {
+  document.getElementById('heroBg').classList.add('loaded');
+});
+
+// Header + fixed CTA scroll
+const header = document.getElementById('header');
+const fixedCta = document.getElementById('fixedCta');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  header.classList.toggle('scrolled', y > 60);
+  fixedCta.classList.toggle('visible', y > window.innerHeight * 0.45);
+}, { passive: true });
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
