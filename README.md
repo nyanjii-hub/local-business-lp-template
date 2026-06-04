@@ -54,6 +54,11 @@ https://www.google.com/maps?q=東京都〇〇区〇〇%201-2-3&output=embed
 
 MIT License
 
+## Related Templates
+
+- [整体院向けLPテンプレート](https://github.com/nyanjii-hub/local-business-lp-template-seitai)
+- [行政書士向けLPテンプレート](https://github.com/nyanjii-hub/local-business-lp-template-gyosei)
+
 ## Created with
 
 ChatGPT / Claude Code / Codex などのAI開発支援ツールを活用して作成・改善できます。
