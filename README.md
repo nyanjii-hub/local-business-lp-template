@@ -1,5 +1,8 @@
 # Local Business LP Template
 
+🚀 Demo
+https://local-business-lp-template.vercel.app
+
 地域店舗向けのシンプルなランディングページテンプレートです。美容院、整体院、ネイルサロン、エステ、学習塾、士業、工務店などの小規模事業者向けに使えます。
 
 ## 特徴
